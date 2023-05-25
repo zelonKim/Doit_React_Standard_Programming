@@ -266,6 +266,7 @@ class App extends React.Component {
 export default App;
  */
 
+/* 
 import React from "react";
 import Counter from "./03/Counter";
 
@@ -279,3 +280,115 @@ class App extends React.Component {
   }
 }
 export default App;
+ */
+
+/* import React from "react";
+import LifecycleExample from "./03/LifecycleExample";
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <LifecycleExample />
+      </div>
+    );
+  }
+}
+export default App; */
+
+/* import React from "react";
+import LifecycleExample from "./03/LifecycleExample";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasDestroyed: false };
+  }
+  componentDidMount() {
+    this.setState({ hasDestroyed: true });
+  }
+  render() {
+    return (
+      <div>
+        <div>{this.state.hasDestroyed ? null : <LifecycleExample />}</div>
+      </div>
+    );
+  }
+}
+export default App;
+// constructor 호출
+// getDerivedStateFromProps 호출
+// render 호출
+// componentDidMount 호출
+// componentWillUnmount 호출 */
+
+/* import React from "react";
+import Counter from "./03/Counter";
+import NewCounter from "./03/NewCounter";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 10 };
+    this.resetCount = this.resetCount.bind(this);
+  }
+  resetCount() {
+    this.setState(({ count }) => ({ count: count + 10 }));
+  }
+  render() {
+    return (
+      <div>
+        <div>
+          <Counter count={this.state.count} /> 
+        </div>
+        <div>
+          <NewCounter count={this.state.count} />
+        </div>
+        <button onClick={this.resetCount}>
+          {this.state.count + 10}으로 초기화
+        </button>
+      </div>
+    );
+  } // Counter 컴포넌트는 처음 생성될 때만 프로퍼티값으로 state값을 설정함. -> 갱신 과정의 state값 반영 X
+} // NewCounter 컴포넌트는 getDerivedStateFromProps()함수로 App 컴포넌트로부터 갱신된 프로퍼티값을 동기화함. -> 갱신 과정의 state값 반영 O 
+export default App; */
+
+import React from "react";
+class MyComponent extends React.Component {
+  componentDidUpdate() {
+    console.log("MyComponent 새로고침");
+  }
+}
+class MyPureComponent extends React.PureComponent {
+  componentDidUpdate() {
+    console.log("MyPureComponent 새로고침");
+  }
+}
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listValue = [{ name: "Park" }, { name: "Lee" }];
+    this.state = { version: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    setTimeout(() => {
+      this.listValue[0].name = "Justin";
+      this.setState({ version: 1 });
+    }, 100);
+    
+    setTimeout(() => {
+      this.listValue = [{ name: "Justin" }, { name: "Lee" }];
+      this.setState({ version: 2 });
+    }, 200);
+  }
+  render() {
+    return (
+      <div className="body">
+        <MyComponent value={this.listValue} />
+        <MyPureComponent value={this.listValue} />
+        <button onClick={this.handleClick}>버튼</button>
+      </div>
+    );
+  }
+}
