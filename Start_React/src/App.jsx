@@ -353,7 +353,7 @@ class App extends React.Component {
 } // NewCounter 컴포넌트는 getDerivedStateFromProps()함수로 App 컴포넌트로부터 갱신된 프로퍼티값을 동기화함. -> 갱신 과정의 state값 반영 O 
 export default App; */
 
-import React from "react";
+/* import React from "react";
 class MyComponent extends React.Component {
   componentDidUpdate() {
     console.log("MyComponent 새로고침");
@@ -392,3 +392,73 @@ class App extends React.Component {
     );
   }
 }
+ */
+
+/* 
+import React from "react";
+import { ListExample } from "./03/ListExample";
+
+function App() {
+  return <ListExample />;
+}
+export default App;
+ */
+
+/* import React from "react";
+import ToDoList from "./03/ToDoList";
+
+function App() {
+  return <ToDoList />;
+}
+export default App; */
+
+/////////////////
+
+/* import React from "react";
+import Counter from "./03/Counter";
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 1,
+    };
+  }
+  increaseCount() {
+    this.setState(({ count }) => ({ count: count + 1 }));
+  }
+  render() {
+    return <Counter count={this.state.count} onAdd={this.increaseCount} />;
+  }
+} */
+
+
+/* import React from "react";
+import ScrollSpy from './ScrollSpy'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <ScrollSpy />
+      </div>
+    );
+  }
+}
+export default App; */
+
+
+/* import React from "react";
+import 
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}
+export default App; */
